@@ -31,9 +31,9 @@ class SearchSpider(scrapy.Spider):
     contain_type = util.convert_contain_type(settings.get('CONTAIN_TYPE'))
     regions = util.get_regions(settings.get('REGION'))
     base_url = 'https://s.weibo.com'
-    start_date = settings.get('START_DATE',
-                              datetime.now().strftime('%Y-%m-%d'))
+    start_date = settings.get('START_DATE',datetime.now().strftime('%Y-%m-%d'))
     end_date = settings.get('END_DATE', datetime.now().strftime('%Y-%m-%d'))
+    
     if util.str_to_time(start_date) > util.str_to_time(end_date):
         sys.exit('settings.py配置错误，START_DATE值应早于或等于END_DATE值，请重新配置settings.py')
     further_threshold = settings.get('FURTHER_THRESHOLD', 46)
